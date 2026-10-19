@@ -53,7 +53,7 @@ export default function ContactForm() {
 	}
 
 	return (
-		<form ref={formRef} action={action} noValidate className="space-y-6">
+		<form id="contact-form" ref={formRef} action={action} noValidate className="space-y-6">
 			<div aria-live="polite" role="status">
 				{state.status === "error" && state.message && (
 					<p className="border-l-4 border-minium-light bg-forge-2 px-4 py-3 font-medium text-zinc">

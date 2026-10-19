@@ -172,6 +172,103 @@
 	font-weight: 500;
 }
 
+/* --- Configurateur (1 unité SVG = 1 px) --- */
+.cfg-sheet {
+	color: var(--color-graphite);
+	font-family: var(--font-sans);
+	font-stretch: 78%;
+}
+
+.cfg-sheet path,
+.cfg-sheet rect {
+	fill: none;
+	stroke: currentColor;
+	stroke-linejoin: round;
+}
+
+.cfg-sheet .cfg-bold {
+	stroke-width: 2.5;
+}
+.cfg-sheet .cfg-mid {
+	stroke-width: 1.4;
+}
+.cfg-sheet .cfg-thin {
+	stroke-width: 0.8;
+	opacity: 0.55;
+}
+.cfg-sheet .cfg-frame {
+	stroke-width: 2.5;
+}
+.cfg-sheet .cfg-solid {
+	fill: currentColor;
+	stroke: none;
+}
+.cfg-sheet .cfg-ghost {
+	stroke-width: 1.2;
+	stroke-dasharray: 8 6;
+	opacity: 0.5;
+}
+.cfg-sheet .cfg-accent {
+	stroke: var(--color-minium);
+	stroke-width: 2;
+}
+.cfg-sheet .cfg-dot {
+	fill: currentColor;
+	opacity: 0.7;
+}
+.cfg-sheet rect[fill^="url"] {
+	fill-opacity: 1;
+}
+.cfg-sheet .cfg-dim path {
+	stroke: var(--color-minium);
+	stroke-width: 1.2;
+}
+.cfg-sheet .cfg-dim .ext {
+	opacity: 0.6;
+}
+.cfg-sheet #cfg-arrow path {
+	fill: var(--color-minium);
+	stroke: none;
+}
+.cfg-sheet text {
+	fill: var(--color-minium);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+/* Curseurs */
+.cfg-range {
+	appearance: none;
+	height: 2.75rem;
+	background: transparent;
+	cursor: pointer;
+}
+.cfg-range::-webkit-slider-runnable-track {
+	height: 4px;
+	background: var(--color-graphite);
+}
+.cfg-range::-moz-range-track {
+	height: 4px;
+	background: var(--color-graphite);
+}
+.cfg-range::-webkit-slider-thumb {
+	appearance: none;
+	width: 22px;
+	height: 22px;
+	margin-top: -9px;
+	background: var(--color-minium);
+	border: 3px solid var(--color-zinc);
+	outline: 2px solid var(--color-minium);
+}
+.cfg-range::-moz-range-thumb {
+	width: 16px;
+	height: 16px;
+	background: var(--color-minium);
+	border: 3px solid var(--color-zinc);
+	border-radius: 0;
+	outline: 2px solid var(--color-minium);
+}
+
 /* Sur petit écran la planche est réduite environ deux fois plus : on épaissit traits et textes. */
 @media (max-width: 639px) {
 	.trace-sheet .bold {

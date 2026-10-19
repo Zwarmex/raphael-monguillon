@@ -3,6 +3,7 @@ import ContactSection from "@/components/contact-section";
 import Faq from "@/components/faq";
 import Hero from "@/components/hero";
 import Process from "@/components/process";
+import ProjectSection from "@/components/project-section";
 import Services from "@/components/services";
 import { faq, phoneIsPlaceholder, services, site } from "@/lib/site";
 
@@ -53,6 +54,7 @@ export default function Home() {
 			/>
 			<Hero />
 			<Services />
+			<ProjectSection />
 			<Process />
 			<About />
 			<Faq />

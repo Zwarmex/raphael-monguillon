@@ -5,6 +5,7 @@ import WeldMark from "./weld-mark";
 
 const links = [
 	{ href: "/#savoir-faire", label: "Savoir-faire" },
+	{ href: "/#projet", label: "Votre projet" },
 	{ href: "/#methode", label: "Méthode" },
 	{ href: "/#atelier", label: "L'atelier" },
 	{ href: "/#questions", label: "Questions" },
