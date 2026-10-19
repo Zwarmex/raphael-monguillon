@@ -1,55 +1,58 @@
-import { Factory, Hammer, Wrench } from "lucide-react";
-
-const services = [
-	{
-		icon: <Hammer className="w-10 h-10 text-safety" />,
-		title: "Métallerie & Serrurerie",
-		desc: "Création d'escaliers design, garde-corps, verrières et portails sur-mesure pour votre habitat.",
-	},
-	{
-		icon: <Factory className="w-10 h-10 text-safety" />,
-		title: "Chaudronnerie Industrielle",
-		desc: "Conception de cuves, gaines, châssis et pièces unitaires ou petites séries pour l'industrie.",
-	},
-	{
-		icon: <Wrench className="w-10 h-10 text-safety" />,
-		title: "Réparation Agricole & TP",
-		desc: "Soudure de réparation sur godets, remorques et machines agricoles. Rechargement dur.",
-	},
-];
+import { services } from "@/lib/site";
+import { illustrations } from "./illustrations";
 
 export default function Services() {
 	return (
-		<section className="py-20 bg-industrial-900" id="services">
-			<div className="container mx-auto px-4">
-				<div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6">
-					<div>
-						<h2 className="font-heading text-4xl text-white uppercase mb-2">
-							Nos Expertises
-						</h2>
-						<p className="text-gray-400">
-							Précision et robustesse pour tous vos projets.
-						</p>
-					</div>
+		<section id="savoir-faire" aria-labelledby="savoir-faire-title" className="py-20 lg:py-28">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+				<div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
+					<h2
+						id="savoir-faire-title"
+						className="font-expanded text-3xl font-extrabold leading-[1.05] tracking-[-0.015em] sm:text-4xl lg:col-span-6 lg:text-[2.75rem]">
+						Trois métiers, un seul atelier
+					</h2>
+					<p className="max-w-xl text-lg text-acier lg:col-span-5 lg:col-start-8 lg:pt-2">
+						Précision et robustesse pour tous vos projets : de l&apos;escalier de la
+						maison au châssis d&apos;usine, jusqu&apos;au godet qui doit repartir au
+						chantier.
+					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					{services.map((service, index) => (
-						<div
-							key={index}
-							className="bg-industrial-800 p-8 border border-industrial-700 hover:border-safety transition-all duration-300 group">
-							<div className="mb-6 bg-industrial-900 w-fit p-4 group-hover:bg-safety/10 transition-colors">
-								{service.icon}
-							</div>
-							<h3 className="font-heading text-2xl text-white mb-4 uppercase">
-								{service.title}
-							</h3>
-							<p className="text-gray-400 leading-relaxed">
-								{service.desc}
-							</p>
-						</div>
-					))}
-				</div>
+				<ul className="mt-14 border-t-2 border-graphite">
+					{services.map((s) => {
+						const Illustration = illustrations[s.id];
+						return (
+							<li
+								key={s.id}
+								id={s.id}
+								className="group grid gap-6 border-b border-graphite/30 py-10 md:grid-cols-12 md:gap-8 lg:py-12">
+								<div className="md:col-span-4 lg:col-span-3">
+									<div className="aspect-[3/2] border border-graphite/25 bg-[#eceee9] p-4 text-graphite transition-colors group-hover:border-graphite/60">
+										<Illustration className="h-full w-full" />
+									</div>
+								</div>
+								<div className="md:col-span-8 lg:col-span-5 lg:col-start-5">
+									<p className="font-condensed text-base font-medium text-minium">{s.for}</p>
+									<h3 className="font-expanded mt-1 text-2xl font-bold tracking-[-0.01em] lg:text-[1.75rem]">
+										{s.title}
+									</h3>
+									<p className="mt-3 max-w-prose text-acier">{s.desc}</p>
+								</div>
+								<ul
+									aria-label={`Exemples : ${s.title}`}
+									className="flex flex-wrap content-start gap-2 md:col-span-8 md:col-start-5 lg:col-span-3 lg:col-start-10 lg:pt-7">
+									{s.items.map((it) => (
+										<li
+											key={it}
+											className="font-condensed border border-graphite/30 px-3 py-1 text-[0.95rem] font-medium">
+											{it}
+										</li>
+									))}
+								</ul>
+							</li>
+						);
+					})}
+				</ul>
 			</div>
 		</section>
 	);

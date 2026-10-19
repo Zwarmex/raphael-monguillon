@@ -1,29 +1,62 @@
-import AboutLocal from "@/components/about";
+import About from "@/components/about";
 import ContactSection from "@/components/contact-section";
-import Footer from "@/components/footer";
+import Faq from "@/components/faq";
 import Hero from "@/components/hero";
+import Process from "@/components/process";
 import Services from "@/components/services";
+import { faq, phoneIsPlaceholder, services, site } from "@/lib/site";
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "HomeAndConstructionBusiness",
+	"@id": `${site.url}/#entreprise`,
+	name: site.name,
+	description:
+		"Artisan chaudronnier métallier à Arlanc : métallerie et serrurerie sur-mesure, chaudronnerie industrielle, réparation agricole et TP.",
+	url: site.url,
+	image: `${site.url}/opengraph-image`,
+	...(phoneIsPlaceholder ? {} : { telephone: site.phone.e164 }),
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: site.address.locality,
+		postalCode: site.address.postalCode,
+		addressRegion: site.address.region,
+		addressCountry: site.address.country,
+	},
+	areaServed: site.area.map((name) => ({ "@type": "Place", name })),
+	knowsAbout: ["Chaudronnerie", "Métallerie", "Serrurerie", "Soudure TIG", "Soudure MIG", "Rechargement dur"],
+	hasOfferCatalog: {
+		"@type": "OfferCatalog",
+		name: "Savoir-faire",
+		itemListElement: services.map((s) => ({
+			"@type": "Offer",
+			itemOffered: { "@type": "Service", name: s.title, description: s.desc },
+		})),
+	},
+	// Rappel des questions visibles sur la page (aide les moteurs et les assistants IA)
+	subjectOf: {
+		"@type": "FAQPage",
+		mainEntity: faq.map((f) => ({
+			"@type": "Question",
+			name: f.q,
+			acceptedAnswer: { "@type": "Answer", text: f.a },
+		})),
+	},
+};
 
 export default function Home() {
 	return (
-		<main className="min-h-screen flex flex-col">
-			{/* Navbar simplifiée incluse directement ou via un composant à part */}
-			<nav className="fixed w-full z-50 bg-industrial-900/90 backdrop-blur border-b border-white/10 px-6 py-4 flex justify-between items-center">
-				<div className="font-heading text-2xl font-bold tracking-wider text-white">
-					NOM<span className="text-safety">ARTISAN</span>
-				</div>
-				<a
-					href="#contact"
-					className="bg-safety px-4 py-2 text-white font-bold uppercase text-sm hover:bg-safety-hover transition-colors">
-					Demander un devis
-				</a>
-			</nav>
-
+		<>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+			/>
 			<Hero />
 			<Services />
-			<AboutLocal />
+			<Process />
+			<About />
+			<Faq />
 			<ContactSection />
-			<Footer />
-		</main>
+		</>
 	);
 }

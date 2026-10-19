@@ -1,37 +1,62 @@
-import type { Metadata } from "next";
-import { Inter, Oswald } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
+import SiteFooter from "@/components/site-footer";
+import SiteHeader from "@/components/site-header";
+import { site } from "@/lib/site";
 import "./globals.css";
 
-// On définit les variables CSS ici (--font-inter, etc.)
-const inter = Inter({
+// Une seule famille, utilisée dans trois largeurs : étendue (titres), normale (texte), étroite (annotations).
+const archivo = Archivo({
 	subsets: ["latin"],
-	variable: "--font-inter",
+	axes: ["wdth"],
+	variable: "--font-archivo",
 	display: "swap",
 });
 
-const oswald = Oswald({
-	subsets: ["latin"],
-	variable: "--font-oswald",
-	display: "swap",
-});
+const title = "Chaudronnier métallier à Ambert et Arlanc (63) | Raphaël Monguillon";
+const description =
+	"Chaudronnerie et métallerie sur-mesure à Arlanc et Ambert : portails, escaliers, garde-corps, cuves, châssis, réparation agricole et TP. Soudure TIG/MIG. Devis gratuit sous 48 h.";
 
 export const metadata: Metadata = {
-	title: "Chaudronnerie Métallerie Ambert Arlanc | Soudure & Sur-mesure 63",
-	description:
-		"Artisan chaudronnier à Ambert et Arlanc. Conception métal, réparation agricole, portails et escaliers sur-mesure dans le Puy-de-Dôme. Devis gratuit.",
-	keywords:
-		"Chaudronnier Ambert, Métallier Arlanc, Soudure 63, Portail sur mesure, Réparation agricole Livradois",
+	metadataBase: new URL(site.url),
+	title: { default: title, template: `%s | ${site.name}` },
+	description,
+	applicationName: site.name,
+	authors: [{ name: site.name }],
+	alternates: { canonical: "/" },
+	openGraph: {
+		type: "website",
+		locale: "fr_FR",
+		url: "/",
+		siteName: `${site.name}, ${site.trade}`,
+		title,
+		description,
+	},
+	twitter: { card: "summary_large_image", title, description },
+	robots: { index: true, follow: true, "max-image-preview": "large" },
+	formatDetection: { telephone: false, email: false, address: false },
+	category: "business",
 };
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+
+export const viewport: Viewport = {
+	themeColor: "#e7e8e4",
+	colorScheme: "light",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="fr" className="scroll-smooth">
-			<body
-				className={`${inter.variable} ${oswald.variable} antialiased bg-industrial-900 text-industrial-100`}>
-				{children}
+		<html lang="fr" className={archivo.variable}>
+			<body className="antialiased">
+				<a
+					href="#contenu"
+					className="sr-only z-50 bg-graphite px-4 py-3 font-semibold text-zinc focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+					Aller au contenu
+				</a>
+				<SiteHeader />
+				<main id="contenu" tabIndex={-1} className="focus:outline-none">
+					{children}
+				</main>
+				<SiteFooter />
 			</body>
 		</html>
 	);

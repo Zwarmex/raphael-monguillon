@@ -1,73 +1,53 @@
-// components/ContactSection.tsx
 import { MapPin, Phone } from "lucide-react";
+import { site } from "@/lib/site";
+import ContactForm from "./contact-form";
 
 export default function ContactSection() {
 	return (
-		<section className="py-20 bg-industrial-900" id="contact">
-			<div className="container mx-auto px-4">
-				<div className="bg-safety p-1 md:p-2">
-					<div className="bg-industrial-800 p-8 md:p-16 flex flex-col md:flex-row gap-12">
-						<div className="md:w-1/2">
-							<h2 className="font-heading text-4xl text-white uppercase mb-6">
-								Parlons de votre projet
-							</h2>
-							<p className="text-gray-400 mb-8">
-								N'hésitez pas à m'appeler pour discuter de vos
-								besoins. Je me déplace pour étudier la
-								faisabilité technique.
-							</p>
+		<section id="contact" aria-labelledby="contact-title" className="on-dark bg-forge text-zinc">
+			<div className="revenu h-1.5 w-full" aria-hidden="true" />
+			<div className="mx-auto grid max-w-7xl gap-14 px-4 py-20 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-10 lg:py-28">
+				<div className="lg:col-span-5">
+					<h2
+						id="contact-title"
+						className="font-expanded text-3xl font-extrabold leading-[1.05] tracking-[-0.015em] sm:text-4xl lg:text-[2.75rem]">
+						Parlons de votre projet
+					</h2>
+					<p className="mt-6 max-w-md text-lg leading-relaxed text-cendre">
+						N&apos;hésitez pas à m&apos;appeler pour discuter de vos besoins. Je me
+						déplace pour étudier la faisabilité technique.
+					</p>
 
-							<div className="space-y-6">
-								<div className="flex items-center gap-4">
-									<div className="bg-industrial-900 p-3">
-										<Phone className="text-safety" />
-									</div>
-									<div>
-										<p className="text-sm text-gray-500 uppercase">
-											Téléphone
-										</p>
-										<p className="text-white text-xl font-bold">
-											06 XX XX XX XX
-										</p>
-									</div>
-								</div>
-								<div className="flex items-center gap-4">
-									<div className="bg-industrial-900 p-3">
-										<MapPin className="text-safety" />
-									</div>
-									<div>
-										<p className="text-sm text-gray-500 uppercase">
-											Atelier
-										</p>
-										<p className="text-white text-xl font-bold">
-											63220 Arlanc / Ambert
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+					<ul className="mt-10 space-y-4">
+						<li>
+							<a
+								href={site.phone.href}
+								className="group flex items-center gap-4 border-2 border-cendre/25 p-4 transition-colors hover:border-paille">
+								<span className="grid size-12 shrink-0 place-items-center bg-minium">
+									<Phone className="size-5 text-white" aria-hidden="true" />
+								</span>
+								<span>
+									<span className="font-condensed block text-[0.95rem] text-cendre">Téléphone</span>
+									<span className="font-expanded block text-xl font-bold">{site.phone.display}</span>
+								</span>
+							</a>
+						</li>
+						<li className="flex items-center gap-4 border-2 border-cendre/25 p-4">
+							<span className="grid size-12 shrink-0 place-items-center bg-forge-2">
+								<MapPin className="size-5 text-paille" aria-hidden="true" />
+							</span>
+							<span>
+								<span className="font-condensed block text-[0.95rem] text-cendre">Atelier</span>
+								<span className="font-expanded block text-xl font-bold">
+									{site.address.postalCode} {site.address.locality} / Ambert
+								</span>
+							</span>
+						</li>
+					</ul>
+				</div>
 
-						{/* Formulaire simple (Placeholder visuel) */}
-						<form className="md:w-1/2 space-y-4">
-							<input
-								type="text"
-								placeholder="Nom complet"
-								className="w-full bg-industrial-900 border border-white/10 p-4 text-white focus:border-safety outline-none"
-							/>
-							<input
-								type="text"
-								placeholder="Téléphone"
-								className="w-full bg-industrial-900 border border-white/10 p-4 text-white focus:border-safety outline-none"
-							/>
-							<textarea
-								placeholder="Description du projet..."
-								rows={4}
-								className="w-full bg-industrial-900 border border-white/10 p-4 text-white focus:border-safety outline-none"></textarea>
-							<button className="w-full bg-safety text-white font-bold uppercase py-4 hover:bg-safety-hover transition-colors">
-								Envoyer ma demande
-							</button>
-						</form>
-					</div>
+				<div className="lg:col-span-6 lg:col-start-7">
+					<ContactForm />
 				</div>
 			</div>
 		</section>
