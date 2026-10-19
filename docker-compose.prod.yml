@@ -1,0 +1,12 @@
+services:
+    web:
+        container_name: feretfeu-prod
+        environment:
+            - NODE_ENV=production
+            # SEO : production, indexée
+            - SITE_ENV=production
+        deploy:
+            resources:
+                limits:
+                    cpus: "1.0"
+                    memory: 768M

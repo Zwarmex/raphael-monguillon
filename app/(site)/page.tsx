@@ -1,7 +1,9 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { Flame, Layers, PencilRuler, Phone, Plus, ShieldCheck } from "lucide-react";
+import { ChevronRight, Flame, Layers, PencilRuler, Phone, Plus, ShieldCheck } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import Configurator from "@/components/configurator";
 import ContactForm from "@/components/contact-form";
 import { FeuMark } from "@/components/feu/logo";
 import { pieces } from "@/components/feu/pieces";
@@ -46,7 +48,7 @@ const jsonLd = {
 	hasOfferCatalog: {
 		"@type": "OfferCatalog",
 		name: "Services",
-		itemListElement: offer.map((o) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: o.title, description: o.desc } })),
+		itemListElement: offer.map((o) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: o.title, description: o.desc, url: `${site.url}${o.href}` } })),
 	},
 	subjectOf: {
 		"@type": "FAQPage",
@@ -114,12 +116,19 @@ export default function Home() {
 						{offer.map((o) => {
 							const Art = offerArt[o.id];
 							return (
-								<li key={o.id} className="feu-plate group flex flex-col p-6">
+								<li key={o.id} className="feu-plate group relative flex flex-col p-6 transition-shadow hover:shadow-[0_0_0_1px_var(--feu),0_18px_40px_-20px_rgba(240,122,34,0.6)]">
 									<div className="h-32 text-[var(--argent)] transition-colors group-hover:text-[var(--feu-vif)]">
 										<Art className="h-full w-full" />
 									</div>
-									<h3 className="feu-display mt-6 text-3xl font-extrabold uppercase leading-none">{o.title}</h3>
+									<h3 className="feu-display mt-6 text-3xl font-extrabold uppercase leading-none">
+										<Link href={o.href} className="after:absolute after:inset-0">
+											{o.title}
+										</Link>
+									</h3>
 									<p className="mt-3 text-[var(--muted)]">{o.desc}</p>
+									<span className="mt-auto inline-flex items-center gap-1 pt-5 font-semibold text-[var(--feu-vif)]" aria-hidden="true">
+										En savoir plus <ChevronRight className="size-4" />
+									</span>
 								</li>
 							);
 						})}
@@ -200,8 +209,28 @@ export default function Home() {
 				</div>
 			</section>
 
+			{/* ——— Dessinez votre projet ——— */}
+			<section id="projet" aria-labelledby="projet-title" className="py-24 lg:py-32">
+				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+					<div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+						<div>
+							<div className="feu-rule" aria-hidden="true" />
+							<h2 id="projet-title" className="feu-h2 feu-silver mt-5 text-5xl sm:text-6xl lg:text-7xl">
+								Dessinez votre projet
+							</h2>
+						</div>
+						<p className="max-w-md text-lg text-[var(--muted)]">
+							Réglez les dimensions : le plan se trace en direct. Envoyez-le avec votre demande, le devis part de là.
+						</p>
+					</div>
+					<div className="mt-14">
+						<Configurator />
+					</div>
+				</div>
+			</section>
+
 			{/* ——— Secteur et questions ——— */}
-			<section id="questions" aria-labelledby="faq-title" className="py-24 lg:py-32">
+			<section id="questions" aria-labelledby="faq-title" className="border-t border-[var(--line)] py-24 lg:py-32">
 				<div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-10">
 					<div className="lg:col-span-4">
 						<div className="feu-rule" aria-hidden="true" />

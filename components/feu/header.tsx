@@ -6,9 +6,10 @@ import { FeuLogo } from "./logo";
 const left = [
 	{ href: "/#services", label: "Services" },
 	{ href: "/#artisan", label: "Qui suis-je ?" },
+	{ href: "/#realisations", label: "Réalisations" },
 ];
 const right = [
-	{ href: "/#realisations", label: "Réalisations" },
+	{ href: "/#projet", label: "Votre projet" },
 	{ href: "/#contact", label: "Contact" },
 ];
 

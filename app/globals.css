@@ -84,6 +84,21 @@
 		--f-btn: var(--color-minium);
 		--f-btn-hover: #c84423;
 		--f-on-btn: #fff;
+		/* Thème du configurateur (planche par défaut) */
+		--cfg-ink: var(--color-graphite);
+		--cfg-dim: var(--color-minium);
+		--cfg-sheet: #eceee9;
+		--cfg-line: var(--color-graphite);
+		--cfg-line-soft: rgb(27 30 33 / 0.3);
+		--cfg-muted: var(--color-acier);
+		--cfg-chip: var(--color-graphite);
+		--cfg-on-chip: var(--color-zinc);
+		--cfg-accent: var(--color-minium);
+		--cfg-btn: var(--color-minium);
+		--cfg-btn-hover: var(--color-minium-dark);
+		--cfg-on-btn: #fff;
+		--cfg-track: var(--color-graphite);
+		--cfg-thumb-ring: var(--color-zinc);
 	}
 
 	:focus-visible {
@@ -189,8 +204,12 @@
 }
 
 /* --- Configurateur (1 unité SVG = 1 px) --- */
+.cfg-board {
+	box-shadow: 10px 10px 0 0 var(--cfg-shadow, var(--color-tole));
+}
+
 .cfg-sheet {
-	color: var(--color-graphite);
+	color: var(--cfg-ink);
 	font-family: var(--font-sans);
 	font-stretch: 78%;
 }
@@ -225,7 +244,7 @@
 	opacity: 0.5;
 }
 .cfg-sheet .cfg-accent {
-	stroke: var(--color-minium);
+	stroke: var(--cfg-dim);
 	stroke-width: 2;
 }
 .cfg-sheet .cfg-dot {
@@ -236,18 +255,18 @@
 	fill-opacity: 1;
 }
 .cfg-sheet .cfg-dim path {
-	stroke: var(--color-minium);
+	stroke: var(--cfg-dim);
 	stroke-width: 1.2;
 }
 .cfg-sheet .cfg-dim .ext {
 	opacity: 0.6;
 }
 .cfg-sheet #cfg-arrow path {
-	fill: var(--color-minium);
+	fill: var(--cfg-dim);
 	stroke: none;
 }
 .cfg-sheet text {
-	fill: var(--color-minium);
+	fill: var(--cfg-dim);
 	font-size: 14px;
 	font-weight: 600;
 }
@@ -261,28 +280,28 @@
 }
 .cfg-range::-webkit-slider-runnable-track {
 	height: 4px;
-	background: var(--color-graphite);
+	background: var(--cfg-track);
 }
 .cfg-range::-moz-range-track {
 	height: 4px;
-	background: var(--color-graphite);
+	background: var(--cfg-track);
 }
 .cfg-range::-webkit-slider-thumb {
 	appearance: none;
 	width: 22px;
 	height: 22px;
 	margin-top: -9px;
-	background: var(--color-minium);
-	border: 3px solid var(--color-zinc);
-	outline: 2px solid var(--color-minium);
+	background: var(--cfg-accent);
+	border: 3px solid var(--cfg-thumb-ring);
+	outline: 2px solid var(--cfg-accent);
 }
 .cfg-range::-moz-range-thumb {
 	width: 16px;
 	height: 16px;
-	background: var(--color-minium);
-	border: 3px solid var(--color-zinc);
+	background: var(--cfg-accent);
+	border: 3px solid var(--cfg-thumb-ring);
 	border-radius: 0;
-	outline: 2px solid var(--color-minium);
+	outline: 2px solid var(--cfg-accent);
 }
 
 /* Sur petit écran la planche est réduite environ deux fois plus : on épaissit traits et textes. */

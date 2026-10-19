@@ -36,6 +36,23 @@
 	--bar-accent: var(--feu);
 	--bar-on-accent: #111214;
 
+	/* Configurateur : le plan tracé sur une tôle noire */
+	--cfg-ink: #d9dcdf;
+	--cfg-dim: #f07a22;
+	--cfg-sheet: #18191c;
+	--cfg-line: #4a4d52;
+	--cfg-line-soft: #34373b;
+	--cfg-muted: var(--muted);
+	--cfg-chip: var(--feu);
+	--cfg-on-chip: #111214;
+	--cfg-accent: var(--feu);
+	--cfg-btn: var(--feu);
+	--cfg-btn-hover: #ff8e3a;
+	--cfg-on-btn: #111214;
+	--cfg-track: #5a5e64;
+	--cfg-thumb-ring: #111214;
+	--cfg-shadow: rgb(240 122 34 / 0.18);
+
 	background: var(--charbon);
 	color: var(--text);
 	font-family: var(--font-feu-body), system-ui, sans-serif;

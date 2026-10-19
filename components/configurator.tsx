@@ -40,7 +40,7 @@ function Segmented<T extends string>({
 							onChange={() => onChange(o.id)}
 							className="peer sr-only"
 						/>
-						<span className="inline-flex min-h-11 items-center border-2 border-graphite/25 px-3.5 font-medium transition-colors hover:border-graphite/60 peer-checked:border-graphite peer-checked:bg-graphite peer-checked:text-zinc peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-minium">
+						<span className="inline-flex min-h-11 items-center border-2 border-(--cfg-line-soft) px-3.5 font-medium transition-colors hover:border-(--cfg-line) peer-checked:border-(--cfg-chip) peer-checked:bg-(--cfg-chip) peer-checked:text-(--cfg-on-chip) peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-(--focus)">
 							{o.label}
 						</span>
 					</label>
@@ -220,8 +220,8 @@ export default function Configurator() {
 			</form>
 
 			<figure className="lg:col-span-8">
-				<div className="border-2 border-graphite bg-[#eceee9] p-2 shadow-[10px_10px_0_0_var(--color-tole)]">
-					<div className="border border-graphite/40">
+				<div className="cfg-board border-2 border-(--cfg-line) bg-(--cfg-sheet) p-2">
+					<div className="border border-(--cfg-line-soft)">
 						<div ref={box} className="px-2 pt-4 sm:px-4">
 							<svg
 								viewBox={`0 0 ${width} ${d.height}`}
@@ -243,19 +243,19 @@ export default function Configurator() {
 								{d.body}
 							</svg>
 						</div>
-						<dl className="grid grid-cols-2 border-t-2 border-graphite text-sm sm:grid-cols-5">
+						<dl className="grid grid-cols-2 border-t-2 border-(--cfg-line) text-sm sm:grid-cols-5">
 							{[...d.facts, { k: "Matière", v: c.material }].map((f, i) => (
 								<div
 									key={f.k}
-									className={`border-graphite/40 px-3 py-2.5 sm:px-4 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t sm:border-t-0" : ""} ${i ? "sm:border-l" : ""} ${i === 4 ? "col-span-2 sm:col-span-1" : ""}`}>
-									<dt className="font-condensed text-[0.8rem] font-medium text-acier">{f.k}</dt>
+									className={`border-(--cfg-line-soft) px-3 py-2.5 sm:px-4 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t sm:border-t-0" : ""} ${i ? "sm:border-l" : ""} ${i === 4 ? "col-span-2 sm:col-span-1" : ""}`}>
+									<dt className="font-condensed text-[0.8rem] font-medium text-(--cfg-muted)">{f.k}</dt>
 									<dd className="mt-0.5 font-semibold leading-snug tabular-nums">{f.v}</dd>
 								</div>
 							))}
 						</dl>
 					</div>
 				</div>
-				<figcaption className="font-condensed mt-5 text-[0.95rem] text-acier">
+				<figcaption className="font-condensed mt-5 text-[0.95rem] text-(--cfg-muted)">
 					Dessin indicatif, calculé sur vos réglages. Les cotes définitives sont prises sur place.
 				</figcaption>
 
@@ -263,13 +263,13 @@ export default function Configurator() {
 					<button
 						type="button"
 						onClick={addToQuote}
-						className="inline-flex min-h-13 shrink-0 items-center justify-center bg-minium px-7 text-base font-semibold text-white transition-colors hover:bg-minium-dark">
+						className="inline-flex min-h-13 shrink-0 items-center justify-center bg-(--cfg-btn) px-7 text-base font-semibold text-(--cfg-on-btn) transition-colors hover:bg-(--cfg-btn-hover)">
 						Demander un devis pour ce projet
 					</button>
-					<p aria-live="polite" className="text-[0.95rem] text-acier">
+					<p aria-live="polite" className="text-[0.95rem] text-(--cfg-muted)">
 						{sent && (
 							<span className="inline-flex items-center gap-2">
-								<Check className="size-4 text-minium" aria-hidden="true" />
+								<Check className="size-4 text-(--cfg-accent)" aria-hidden="true" />
 								Le dessin est ajouté à votre demande, en bas de page.
 							</span>
 						)}

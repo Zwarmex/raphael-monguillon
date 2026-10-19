@@ -1,0 +1,12 @@
+services:
+    web:
+        container_name: feretfeu-staging
+        environment:
+            - NODE_ENV=production
+            # SEO : préproduction, jamais indexée
+            - SITE_ENV=preprod
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.50"
+                    memory: 384M

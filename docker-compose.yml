@@ -1,0 +1,30 @@
+# Lancer avec le fichier d'environnement de la cible :
+#   docker compose -f docker-compose.yml -f docker-compose.staging.yml up -d   (staging)
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d      (prod)
+services:
+    web:
+        # Nom surchargé par docker-compose.staging.yml / docker-compose.prod.yml :
+        # c'est ce nom que Nginx Proxy Manager vise (port 3000) sur le réseau reseau_proxy.
+        container_name: feretfeu
+        # Image construite par la CI et tirée depuis GHCR (IMAGE_TAG = sha du commit).
+        # En local, `docker compose build` reconstruit.
+        image: ghcr.io/zwarmex/raphael-monguillon:${IMAGE_TAG:-dev}
+        build:
+            context: .
+            dockerfile: Dockerfile
+            secrets:
+                - env_local
+        restart: always
+        # SMTP_* lus à l'exécution (formulaire de devis)
+        env_file:
+            - .env.local
+        networks:
+            - reseau_proxy
+
+secrets:
+    env_local:
+        file: .env.local
+
+networks:
+    reseau_proxy:
+        external: true

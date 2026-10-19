@@ -19,7 +19,7 @@ export default function FeuFooter() {
 					<ul className="mt-3">
 						{offer.map((o) => (
 							<li key={o.id}>
-								<Link href="/#services" className="inline-flex min-h-10 items-center hover:text-[var(--text)]">
+								<Link href={o.href} className="inline-flex min-h-10 items-center hover:text-[var(--text)]">
 									{o.title}
 								</Link>
 							</li>

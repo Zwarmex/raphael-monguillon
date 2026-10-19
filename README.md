@@ -17,6 +17,41 @@ npm install
 npm run dev
 ```
 
+## Mise en ligne (staging puis prod)
+
+Même chaîne que norde.be : `.github/workflows/deploy.yml`.
+
+1. **Push sur `staging`** : lint et types, puis image Docker construite sur GitHub et poussée sur
+   `ghcr.io/zwarmex/raphael-monguillon`, puis déploiement sur le serveur de préproduction
+   (Tailscale + SSH) dans `/srv/apps/feretfeu`, conteneur `feretfeu-staging` sur le réseau `reseau_proxy`.
+2. **Prod** (plus tard) : décommenter `master` dans le workflow et remplir les secrets de prod.
+
+Le staging n'est jamais indexé (`SITE_ENV=preprod` : robots.txt fermé, `noindex` partout).
+
+### Secrets GitHub (repo Zwarmex/raphael-monguillon)
+
+Remplir `github-secrets.env` à partir de `github-secrets.env.example`, puis :
+
+```powershell
+.\scripts\github-secrets.ps1 -DryRun
+.\scripts\github-secrets.ps1
+```
+
+| Secret | Contenu |
+| --- | --- |
+| `TS_OAUTH_CLIENT_ID`, `TS_OAUTH_SECRET` | client OAuth Tailscale avec le tag `tag:github-actions` (les mêmes que norde.be) |
+| `SSH_USER`, `SSH_PORT` | `deploy` et `22222` |
+| `DEV_SSH_HOST`, `DEV_SSH_KEY` | serveur de staging (nom MagicDNS) et clé privée de déploiement |
+| `ENV_FILE_PREPROD` | fichier au format de `.env.example`, avec `SITE_ENV=preprod` |
+| `SSH_HOST`, `SSH_KEY`, `ENV_FILE_PROD` | idem pour la prod, avec `SITE_ENV=production` |
+
+`GITHUB_TOKEN` est fourni par GitHub (push et pull de l'image), rien à créer.
+
+### Sur le serveur, une seule fois
+
+Dans Nginx Proxy Manager, créer un proxy host `staging.<domaine>` vers `feretfeu-staging`, port `3000`,
+certificat Let's Encrypt. Conseillé : une Access List (mot de passe) sur le staging.
+
 ## Ancienne direction : « la planche de traçage » (désormais dans /propositions/planche)
 
 Le chaudronnier part d'un plan et d'un développé de tôle : le site en reprend le langage.

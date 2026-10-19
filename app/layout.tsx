@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
+import { isProduction } from "@/lib/env";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
 		description,
 	},
 	twitter: { card: "summary_large_image", title, description },
-	robots: { index: true, follow: true, "max-image-preview": "large" },
+	robots: isProduction ? { index: true, follow: true, "max-image-preview": "large" } : { index: false, follow: false },
 	formatDetection: { telephone: false, email: false, address: false },
 	category: "business",
 };

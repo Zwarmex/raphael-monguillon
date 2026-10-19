@@ -1,0 +1,12 @@
+# Les .env ne doivent JAMAIS entrer dans le contexte : l'image est poussée sur GHCR.
+# .env.local est fourni au build par un secret BuildKit (voir Dockerfile).
+.env*
+github-secrets.env*
+node_modules
+.next
+.git
+.github
+.claude
+*.log
+.DS_Store
+Thumbs.db

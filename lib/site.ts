@@ -70,22 +70,27 @@ export const services = [
 
 export const faq = [
 	{
+		id: "secteur",
 		q: "Dans quel secteur intervenez-vous ?",
 		a: "L'atelier est à Arlanc. J'interviens à Ambert, Arlanc et dans tout le Livradois-Forez, et je me déplace dans le Puy-de-Dôme.",
 	},
 	{
+		id: "devis",
 		q: "Combien de temps pour recevoir un devis ?",
 		a: "Le devis est gratuit et vous le recevez sous 48 h. Pour les projets qui le demandent, je me déplace d'abord pour étudier la faisabilité technique sur place.",
 	},
 	{
+		id: "metaux",
 		q: "Quels métaux travaillez-vous ?",
 		a: "L'acier, l'inox et l'aluminium, en soudure TIG et MIG.",
 	},
 	{
+		id: "reparation",
 		q: "Réparez-vous le matériel agricole et de TP ?",
 		a: "Oui : soudure de réparation sur godets, remorques et machines agricoles, ainsi que le rechargement dur des pièces d'usure.",
 	},
 	{
+		id: "unite",
 		q: "Faites-vous des pièces à l'unité ?",
 		a: "Oui. Tout est fait sur-mesure, de la pièce unitaire à la petite série, adapté aux contraintes de vos bâtiments et de vos machines.",
 	},
@@ -96,23 +101,80 @@ export const faq = [
 export const offer = [
 	{
 		id: "chaudronnerie",
+		href: "/chaudronnerie",
 		title: "Chaudronnerie",
 		desc: "Cuves, gaines, châssis et pièces unitaires ou petites séries, conçus et soudés sur mesure.",
+		items: ["Cuves", "Gaines", "Châssis", "Pièces unitaires", "Petites séries"],
+		related: ["divers"],
+		page: {
+			title: "Chaudronnerie à Ambert et Arlanc (63), pièces sur mesure",
+			description:
+				"Cuves, gaines, châssis, pièces unitaires et petites séries pour l'industrie et les particuliers à Ambert, Arlanc et dans le Livradois-Forez. Acier, inox, aluminium. Devis gratuit sous 48 h.",
+			h1: "Chaudronnerie sur mesure à Ambert et dans le Livradois-Forez",
+			intro:
+				"Conception et fabrication de cuves, gaines, châssis et pièces unitaires ou petites séries, adaptées aux contraintes de vos bâtiments et de vos machines, pour les industriels comme pour les particuliers.",
+			itemsTitle: "Ce que je fabrique",
+			faq: ["unite", "metaux", "devis", "secteur"],
+		},
 	},
 	{
 		id: "metallerie",
+		href: "/metallerie-ferronnerie",
 		title: "Métallerie & ferronnerie",
 		desc: "Escaliers, garde-corps, verrières, portails : des ouvrages sur mesure pour votre habitat.",
+		items: ["Escaliers", "Garde-corps", "Verrières", "Portails", "Pieds de lampe et objets"],
+		related: ["pied-lampe", "divers"],
+		page: {
+			title: "Métallier ferronnier à Ambert et Arlanc, portails et escaliers sur mesure",
+			description:
+				"Portails, escaliers, garde-corps et verrières sur mesure à Ambert, Arlanc et dans le Livradois-Forez. Métallerie et ferronnerie artisanales, acier, inox, aluminium. Devis gratuit sous 48 h.",
+			h1: "Métallerie et ferronnerie sur mesure à Ambert et Arlanc",
+			intro:
+				"Escaliers, garde-corps, verrières et portails dessinés pour votre maison, fabriqués à l'atelier d'Arlanc et posés chez vous, à Ambert, à Arlanc et dans tout le Livradois-Forez.",
+			itemsTitle: "Ce que je fabrique pour votre maison",
+			faq: ["metaux", "unite", "secteur", "devis"],
+		},
 	},
 	{
 		id: "cheminee",
+		href: "/entretien-cheminees",
 		title: "Entretien de cheminées",
 		desc: "Entretien et nettoyage de cheminées, interventions techniques sur les conduits de fumée, chapeaux et protections sur mesure.",
+		items: [
+			"Entretien et nettoyage de cheminées",
+			"Interventions sur les conduits de fumée",
+			"Chapeaux de cheminée sur mesure",
+			"Plaques de protection murale et de sol",
+		],
+		related: ["chapeau-cheminee", "protection-murale", "protection-sol"],
+		page: {
+			title: "Entretien et nettoyage de cheminées à Ambert et Arlanc (63)",
+			description:
+				"Entretien et nettoyage de cheminées, interventions sur les conduits de fumée, chapeaux de cheminée et plaques de protection sur mesure à Ambert, Arlanc et dans le Livradois-Forez.",
+			h1: "Entretien de cheminées et conduits de fumée à Ambert et Arlanc",
+			intro:
+				"Entretien et nettoyage de votre cheminée, interventions techniques sur les conduits de fumée, et tout ce qui se fabrique en métal autour du foyer : chapeaux de cheminée, plaques de protection murale et de sol, sur mesure.",
+			itemsTitle: "Ce que je fais autour de votre foyer",
+			faq: ["secteur", "devis", "metaux"],
+		},
 	},
 	{
 		id: "restauration",
+		href: "/restauration-reparation",
 		title: "Restauration & réparation",
 		desc: "Remise en état d'ouvrages métalliques, soudure de réparation sur godets, remorques et machines agricoles.",
+		items: ["Ouvrages métalliques anciens", "Godets", "Remorques", "Machines agricoles", "Rechargement dur"],
+		related: ["divers"],
+		page: {
+			title: "Restauration métallique et réparation agricole à Ambert et Arlanc",
+			description:
+				"Remise en état d'ouvrages métalliques, soudure de réparation sur godets, remorques et machines agricoles, rechargement dur. Atelier à Arlanc, pour Ambert et le Livradois-Forez.",
+			h1: "Restauration et réparation métallique à Arlanc, Ambert et dans le Livradois-Forez",
+			intro:
+				"Remise en état d'ouvrages métalliques, soudure de réparation sur godets, remorques et machines agricoles, et rechargement dur des pièces d'usure, pour les particuliers, les agriculteurs et les entreprises de TP.",
+			itemsTitle: "Ce que je remets en état",
+			faq: ["reparation", "metaux", "secteur", "devis"],
+		},
 	},
 ] as const;
 
