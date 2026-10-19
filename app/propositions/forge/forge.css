@@ -1,0 +1,145 @@
+/* Proposition « Forge » : nuit d'atelier, acier chauffé, typographie d'affiche. */
+.forge {
+	--bg: #0e0f10;
+	--surface: #16181a;
+	--line: #2b2e31;
+	--text: #ece8e1;
+	--muted: #a39e96;
+	--paille: #e7c27d;
+	--focus: #e7c27d;
+
+	--f-text: var(--text);
+	--f-muted: var(--muted);
+	--f-field: #1d2023;
+	--f-line: #3a3e42;
+	--f-line-hover: #6b6f73;
+	--f-error: #ff9a76;
+	--f-accent: var(--paille);
+	--f-on-accent: #0e0f10;
+	--f-btn: var(--paille);
+	--f-btn-hover: #f3d79f;
+	--f-on-btn: #0e0f10;
+
+	--bar-bg: #16181a;
+	--bar-fg: var(--text);
+	--bar-line: #2b2e31;
+	--bar-accent: var(--paille);
+	--bar-on-accent: #0e0f10;
+
+	min-height: 100svh;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-forge-body), system-ui, sans-serif;
+	color-scheme: dark;
+}
+
+.forge-display {
+	font-family: var(--font-forge-display), var(--font-forge-body), sans-serif;
+}
+
+.forge ::selection {
+	background: var(--paille);
+	color: var(--bg);
+}
+
+.forge-btn,
+.forge-btn-ghost {
+	display: inline-flex;
+	min-height: 3.5rem;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	padding: 0 1.75rem;
+	font-weight: 600;
+	transition:
+		background-color 0.2s,
+		color 0.2s,
+		border-color 0.2s;
+}
+.forge-btn {
+	background: var(--paille);
+	color: var(--bg);
+}
+.forge-btn:hover {
+	background: #f3d79f;
+}
+.forge-btn-ghost {
+	border: 1px solid var(--line);
+	color: var(--text);
+}
+.forge-btn-ghost:hover {
+	border-color: var(--paille);
+	color: var(--paille);
+}
+
+/* Filet de chaleur sous chaque métier, au survol */
+.forge-card {
+	position: relative;
+}
+.forge-card::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 3px;
+	background: linear-gradient(90deg, #3a4f9c, #7b3f73, #b4783b, #e7c27d);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.forge-card:hover::after {
+	transform: scaleX(1);
+}
+
+/* Barre de lecture : un filet de revenu qui avance avec le défilement */
+.forge-progress {
+	display: none;
+}
+@supports (animation-timeline: scroll()) {
+	.forge-progress {
+		display: block;
+		position: fixed;
+		inset: 0 0 auto 0;
+		z-index: 50;
+		height: 3px;
+		background: linear-gradient(90deg, #3a4f9c, #7b3f73, #b4783b, #e7c27d, #fff4dc);
+		transform-origin: left;
+		animation: forge-grow linear both;
+		animation-timeline: scroll(root);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	/* Le cordon se dépose de gauche à droite au chargement */
+	.forge-bead {
+		animation: forge-depose 1.8s cubic-bezier(0.45, 0, 0.2, 1) 0.2s backwards;
+	}
+	.forge-ember {
+		animation: forge-braise 2.4s ease-in-out 2 alternate;
+		transform-box: fill-box;
+		transform-origin: center;
+	}
+}
+
+@keyframes forge-grow {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+@keyframes forge-depose {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+}
+@keyframes forge-braise {
+	from {
+		opacity: 0.75;
+		transform: scale(0.92);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+}

@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
-import SiteFooter from "@/components/site-footer";
-import SiteHeader from "@/components/site-header";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -13,22 +11,22 @@ const archivo = Archivo({
 	display: "swap",
 });
 
-const title = "Chaudronnier métallier à Ambert et Arlanc (63) | Raphaël Monguillon";
+const title = "Fer & Feu | Métallier chaudronnier à Ambert et Arlanc (63)";
 const description =
-	"Chaudronnerie et métallerie sur-mesure à Arlanc et Ambert : portails, escaliers, garde-corps, cuves, châssis, réparation agricole et TP. Soudure TIG/MIG. Devis gratuit sous 48 h.";
+	"Fer & Feu, artisan à Arlanc : chaudronnerie, métallerie et ferronnerie sur mesure, restauration, entretien et nettoyage de cheminées. Ambert, Livradois-Forez. Devis gratuit sous 48 h.";
 
 export const metadata: Metadata = {
 	metadataBase: new URL(site.url),
 	title: { default: title, template: `%s | ${site.name}` },
 	description,
 	applicationName: site.name,
-	authors: [{ name: site.name }],
+	authors: [{ name: site.owner }],
 	alternates: { canonical: "/" },
 	openGraph: {
 		type: "website",
 		locale: "fr_FR",
 		url: "/",
-		siteName: `${site.name}, ${site.trade}`,
+		siteName: site.name,
 		title,
 		description,
 	},
@@ -39,8 +37,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-	themeColor: "#e7e8e4",
-	colorScheme: "light",
+	themeColor: "#111214",
+	colorScheme: "dark light",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -52,11 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 					className="sr-only z-50 bg-graphite px-4 py-3 font-semibold text-zinc focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
 					Aller au contenu
 				</a>
-				<SiteHeader />
-				<main id="contenu" tabIndex={-1} className="focus:outline-none">
-					{children}
-				</main>
-				<SiteFooter />
+				{children}
 			</body>
 		</html>
 	);

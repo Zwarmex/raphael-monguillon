@@ -1,0 +1,116 @@
+/* Proposition « Catalogue d'atelier » : catalogue stéphanois d'autrefois, encre bleue et tampon rouge. */
+.catalogue {
+	--papier: #f2f1ec;
+	--page: #f7f6f1;
+	--encre: #1c3366;
+	--muted: #3f4a66;
+	--rouge: #b3261e;
+	--focus: #b3261e;
+
+	--f-text: var(--encre);
+	--f-muted: var(--muted);
+	--f-field: #fffefb;
+	--f-line: rgb(28 51 102 / 0.55);
+	--f-line-hover: var(--encre);
+	--f-error: var(--rouge);
+	--f-accent: var(--encre);
+	--f-on-accent: var(--page);
+	--f-btn: var(--rouge);
+	--f-btn-hover: #8f1d17;
+	--f-on-btn: #fff;
+
+	--bar-bg: var(--page);
+	--bar-fg: var(--encre);
+	--bar-line: var(--encre);
+	--bar-accent: var(--rouge);
+	--bar-on-accent: #fff;
+
+	min-height: 100svh;
+	/* Le tampon grossit pendant sa frappe : il ne doit jamais élargir la page */
+	overflow-x: clip;
+	background: var(--papier);
+	color: var(--encre);
+	font-family: var(--font-cat-body), Georgia, serif;
+}
+
+.cat-display {
+	font-family: var(--font-cat-display), Georgia, serif;
+}
+
+.cat-page {
+	background: var(--page);
+	border: 1px solid var(--encre);
+	box-shadow:
+		0 0 0 6px var(--page),
+		0 0 0 7px var(--encre);
+}
+
+/* Gravure : fond hachuré très léger, comme une illustration imprimée */
+.cat-gravure {
+	background-image: repeating-linear-gradient(135deg, rgb(28 51 102 / 0.05) 0 1px, transparent 1px 6px);
+}
+
+/* Points de conduite entre l'ouvrage et « sur mesure » */
+.cat-leader {
+	flex: 1;
+	min-width: 1.5rem;
+	border-bottom: 2px dotted rgb(28 51 102 / 0.45);
+	transform: translateY(-0.3em);
+}
+
+.cat-lettrine {
+	float: left;
+	font-family: var(--font-cat-display), Georgia, serif;
+	font-size: 4.2rem;
+	line-height: 0.8;
+	font-weight: 700;
+	color: var(--rouge);
+	padding: 0.35rem 0.5rem 0 0;
+}
+
+.cat-tampon {
+	transform: rotate(-14deg);
+	mix-blend-mode: multiply;
+	opacity: 0.9;
+}
+
+.cat-btn,
+.cat-btn-ghost {
+	display: inline-flex;
+	min-height: 3.5rem;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	padding: 0 1.75rem;
+	font-weight: 600;
+	white-space: nowrap;
+	transition: background-color 0.15s;
+}
+.cat-btn {
+	background: var(--rouge);
+	color: #fff;
+}
+.cat-btn:hover {
+	background: #8f1d17;
+}
+.cat-btn-ghost {
+	border: 1px solid var(--encre);
+	color: var(--encre);
+}
+.cat-btn-ghost:hover {
+	background: rgb(28 51 102 / 0.06);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	/* Le tampon est frappé une fois à l'arrivée */
+	.cat-tampon {
+		animation: cat-frappe 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) 0.6s backwards;
+	}
+}
+
+@keyframes cat-frappe {
+	from {
+		opacity: 0;
+		transform: rotate(-14deg) scale(1.6);
+	}
+}

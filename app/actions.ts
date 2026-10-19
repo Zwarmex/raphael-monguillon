@@ -11,7 +11,7 @@ export type ContactState = {
 	values?: Partial<Record<Field, string>>;
 };
 
-const kinds = ["Métallerie", "Chaudronnerie", "Réparation", "Autre"];
+const kinds = ["Métallerie", "Chaudronnerie", "Cheminée", "Réparation", "Autre"];
 
 const clean = (v: FormDataEntryValue | null, max: number) =>
 	typeof v === "string" ? v.trim().slice(0, max) : "";

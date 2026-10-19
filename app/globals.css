@@ -70,13 +70,29 @@
 		touch-action: manipulation;
 	}
 
+	:root {
+		--focus: var(--color-minium);
+		/* Thème du formulaire de contact (chaque proposition peut le redéfinir) */
+		--f-text: var(--color-zinc);
+		--f-muted: var(--color-cendre);
+		--f-field: var(--color-forge-2);
+		--f-line: rgb(169 174 178 / 0.4);
+		--f-line-hover: rgb(169 174 178 / 0.75);
+		--f-error: var(--color-minium-light);
+		--f-accent: var(--color-paille);
+		--f-on-accent: var(--color-forge);
+		--f-btn: var(--color-minium);
+		--f-btn-hover: #c84423;
+		--f-on-btn: #fff;
+	}
+
 	:focus-visible {
-		outline: 3px solid var(--color-minium);
+		outline: 3px solid var(--focus);
 		outline-offset: 3px;
 	}
 
-	.on-dark :focus-visible {
-		outline-color: var(--color-paille);
+	.on-dark {
+		--focus: var(--color-paille);
 	}
 
 	::selection {

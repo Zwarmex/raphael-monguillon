@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { services, site } from "@/lib/site";
-import WeldMark from "./weld-mark";
+import Poincon from "./poincon";
 
 export default function SiteFooter() {
 	return (
@@ -8,7 +8,7 @@ export default function SiteFooter() {
 			<div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-12 lg:px-10">
 				<div className="md:col-span-5">
 					<div className="flex items-center gap-3 text-zinc">
-						<WeldMark className="h-7 w-10" />
+						<Poincon className="h-8 w-[3.75rem]" />
 						<span className="font-expanded text-lg font-extrabold">{site.name}</span>
 					</div>
 					<p className="mt-4 max-w-sm">
@@ -21,7 +21,7 @@ export default function SiteFooter() {
 					<ul className="mt-3 space-y-1">
 						{services.map((s) => (
 							<li key={s.id}>
-								<Link href={`/#${s.id}`} className="inline-flex min-h-10 items-center hover:text-zinc hover:underline">
+								<Link href={`#${s.id}`} className="inline-flex min-h-10 items-center hover:text-zinc hover:underline">
 									{s.title}
 								</Link>
 							</li>
@@ -37,7 +37,7 @@ export default function SiteFooter() {
 							</a>
 						</li>
 						<li>
-							<Link href="/#contact" className="inline-flex min-h-10 items-center hover:text-zinc hover:underline">
+							<Link href="#contact" className="inline-flex min-h-10 items-center hover:text-zinc hover:underline">
 								Demander un devis
 							</Link>
 						</li>

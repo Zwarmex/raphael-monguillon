@@ -1,13 +1,23 @@
-# Raphaël Monguillon, chaudronnerie & métallerie
+# Fer & Feu, métallerie et chaudronnerie
 
-Site vitrine (Next.js 16, Tailwind CSS 4) d'un artisan chaudronnier métallier à Arlanc (63).
+Site vitrine (Next.js 16, Tailwind CSS 4) de Fer & Feu, l'entreprise de Raphaël Monguillon, métallier chaudronnier à Arlanc (63).
+
+- `/` : le site Fer & Feu (nuit d'atelier, acier brossé, feu de forge).
+- `/propositions` : les autres directions explorées (planche de traçage, forge, plaque constructeur, catalogue), non indexées.
+
+## Photos à fournir
+
+Le site fonctionne sans photo (dessins au trait), mais il sera bien plus fort avec les vraies :
+
+- `public/photos/artisan.jpg` : portrait à l'atelier (format vertical). Utilisé automatiquement dès qu'il est déposé.
+- Réalisations : déposer les images dans `public/realisations/` puis renseigner `photo` pour chaque entrée de `realisations` dans `lib/site.ts` (par exemple `"/realisations/protection-murale.jpg"`).
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Direction artistique : « la planche de traçage »
+## Ancienne direction : « la planche de traçage » (désormais dans /propositions/planche)
 
 Le chaudronnier part d'un plan et d'un développé de tôle : le site en reprend le langage.
 

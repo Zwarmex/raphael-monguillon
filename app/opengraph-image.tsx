@@ -1,21 +1,10 @@
 import { ImageResponse } from "next/og";
-import { pathOf, squareToRound, type V2 } from "@/lib/trace";
 
-export const alt = "Raphaël Monguillon, chaudronnerie et métallerie sur-mesure à Ambert et Arlanc";
+export const alt = "Fer & Feu, métallier chaudronnier à Ambert et Arlanc";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpengraphImage() {
-	const { flat, n } = squareToRound({ side: 600, diameter: 400, height: 350, divisions: 4 });
-	const s = 0.34;
-	const o: V2 = [640, 190];
-	const f = (p: V2): V2 => [o[0] + p[0] * s, o[1] + p[1] * s];
-	const bottom = [flat.m0, ...flat.c, flat.m1].map(f);
-	const arc = flat.p.map(f);
-	const folds = flat.c.flatMap((c, k) =>
-		Array.from({ length: n + 1 }, (_, j) => pathOf([f(c), f(flat.p[k * n + j])])),
-	);
-
 	return new ImageResponse(
 		(
 			<div
@@ -23,43 +12,37 @@ export default function OpengraphImage() {
 					width: "100%",
 					height: "100%",
 					display: "flex",
-					flexDirection: "column",
-					justifyContent: "space-between",
-					background: "#e7e8e4",
-					color: "#1b1e21",
-					padding: 64,
+					alignItems: "center",
+					background: "radial-gradient(ellipse 50% 60% at 78% 62%, rgba(240,122,34,0.35), rgba(17,18,20,0) 70%), #111214",
+					color: "#efede9",
+					padding: "0 72px",
 					position: "relative",
 				}}>
-				<svg width="1200" height="630" viewBox="0 0 1200 630" style={{ position: "absolute", top: 0, left: 0 }}>
-					{folds.map((d, i) => (
-						<path key={i} d={d} stroke="#1b1e21" strokeOpacity="0.35" strokeWidth="1.5" fill="none" />
-					))}
-					<path d={pathOf(bottom)} stroke="#1b1e21" strokeWidth="3.5" fill="none" />
-					<path d={pathOf(arc)} stroke="#1b1e21" strokeWidth="3.5" fill="none" />
-					<path d={pathOf([bottom[0], arc[0]])} stroke="#b3371a" strokeWidth="5" fill="none" />
-					<path d={pathOf([bottom[bottom.length - 1], arc[arc.length - 1]])} stroke="#b3371a" strokeWidth="5" fill="none" />
+				<div style={{ display: "flex", flexDirection: "column", width: 640 }}>
+					<div style={{ fontSize: 26, letterSpacing: 6, color: "#ffb347" }}>FER &amp; FEU · AMBERT · ARLANC</div>
+					<div style={{ fontSize: 78, fontWeight: 800, lineHeight: 1, marginTop: 24, color: "#e4e6e8" }}>
+						Quand le fer rencontre l&apos;artisanat
+					</div>
+					<div style={{ fontSize: 28, marginTop: 28, color: "#a6a39e" }}>
+						Chaudronnerie, métallerie, entretien de cheminées. Devis gratuit sous 48 h.
+					</div>
+				</div>
+				<svg width="420" height="322" viewBox="0 0 120 92" style={{ position: "absolute", right: 40, top: 150 }}>
+					<defs>
+						<linearGradient id="a" x1="0" x2="0" y1="0" y2="1">
+							<stop offset="0" stopColor="#fbfbfb" />
+							<stop offset="0.5" stopColor="#a9adb2" />
+							<stop offset="1" stopColor="#5d6267" />
+						</linearGradient>
+						<linearGradient id="f" x1="0" x2="0" y1="1" y2="0">
+							<stop offset="0" stopColor="#ffd25e" />
+							<stop offset="0.5" stopColor="#f58a24" />
+							<stop offset="1" stopColor="#d9481b" />
+						</linearGradient>
+					</defs>
+					<path d="M64 44c-11-3-15-12-10-22 1 6 4 8 7 8-2-9 2-18 10-25-1 7 1 12 5 15 2-5 1-9-1-13 9 6 13 17 9 27-2 6-8 10-20 10z" fill="url(#f)" />
+					<path d="M4 50c10-6 22-8 34-8h76v11h-12c-8 1-12 5-14 11v7l11 4v7H45v-7l11-4v-7c-2-6-6-10-14-11-12-1-26-1-38-3z" fill="url(#a)" />
 				</svg>
-				<div style={{ display: "flex", fontSize: 30, fontWeight: 600, color: "#4b5157" }}>
-					Raphaël Monguillon
-				</div>
-				<div style={{ display: "flex", flexDirection: "column", maxWidth: 600 }}>
-					<div style={{ fontSize: 56, fontWeight: 800, lineHeight: 1.04, letterSpacing: -1.5 }}>
-						Chaudronnerie et métallerie sur-mesure
-					</div>
-					<div style={{ fontSize: 30, marginTop: 20, color: "#4b5157" }}>
-						Ambert, Arlanc, Livradois-Forez. Devis gratuit sous 48 h.
-					</div>
-				</div>
-				<div
-					style={{
-						position: "absolute",
-						left: 0,
-						bottom: 0,
-						width: "100%",
-						height: 14,
-						backgroundImage: "linear-gradient(90deg, #d9b56a, #b4783b 28%, #7b3f73 55%, #3a4f9c 78%, #6f93be)",
-					}}
-				/>
 			</div>
 		),
 		size,
